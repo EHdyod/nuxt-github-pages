@@ -96,7 +96,6 @@ jobs:
         with:
           fetch-depth: 0
       - name: Generate README.md
-        uses: probablykasper/readme-template-action@v1
         with:
           token: ${{ secrets.README_TEMPLATE_TOKEN }}
           template: TEMPLATE.md
