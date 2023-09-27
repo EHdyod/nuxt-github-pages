@@ -88,19 +88,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
-
-  update_templates:
-    name: "Update Templates"
-    runs-on: ubuntu-latest
-    steps:
-      - name: "Fetching Repository Contents"
-        uses: actions/checkout@main
-
-      # Runs a set of commands using the runners shell
-      - name: Update TEMPLATE.md
-        run: |
-          sed -i 's/<reponame>/'${{ github.event.repository.name }}'/' TEMPLATE.md
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config user.name "github-actions[bot]"
-          git commit -am "Automated report"
-          git push
