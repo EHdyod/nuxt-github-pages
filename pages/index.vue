@@ -1,8 +1,11 @@
 <template>
-  <main>
-    <div>
-      <h1>Home</h1>
-      <NuxtLink to="/about">About</NuxtLink>
-    </div>
-  </main>
+    <h1>Home</h1>
 </template>
+
+<script setup lang="ts">
+
+</script>
+
+<style scoped>
+
+</style>
