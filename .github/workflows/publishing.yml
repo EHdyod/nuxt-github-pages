@@ -89,23 +89,18 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v2
 
-  publish:
+  update_templates:
+    name: "Update Templates"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: Generate README.md
-        with:
-          token: ${{ secrets.README_TEMPLATE_TOKEN }}
-          template: TEMPLATE.md
-          output: README.md
-      - name: Update README.md
+      - name: "Fetching Repository Contents"
+        uses: actions/checkout@main
+
+      # Runs a set of commands using the runners shell
+      - name: Update TEMPLATE.md
         run: |
-          if [[ "$(git status --porcelain)" != "" ]]; then
-            git config user.name "GitHub Action"
-            git config user.email "action@github.com"
-            git add .
-            git commit -m "Auto-update README.md"
-            git push
-          fi
+          sed -i 's/<reponame>/'${{ github.event.repository.name }}'/' TEMPLATE.md
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git commit -am "Automated report"
+          git push
